@@ -71,6 +71,10 @@ user name
 **DB_passwrod:**
 passowrd
 
+Note
+---
+The program may run extremely slowly or even stop for large large data amount (i.e., > 1000 * 1000). Please allocate more heap and try again. For example, > 10 GB
+
 Contact
 ---
 If you have any question or bug report, feel free to email me at *f4chen@ucsd.edu*.
