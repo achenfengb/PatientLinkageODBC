@@ -1,0 +1,21 @@
+|local configure
+party: generator | role
+port: 9000 | listening port
+threads: 2 |both party should have the same thread number.
+hash bits:24 | the bit of hashes of the rules
+results save path: gen.txt
+
+|database configure
+DSN:PTL
+DB_port:1433
+DB_name:database2
+DB_table:table2
+DB_user:user2
+DB_password:123
+
+id: id
+|patient linkage rules
+rule: first(12)+last(11)+bdate(8)
+rule: ssn(9)+bdate(8)
+rule: last(11) + ssn(9)
+rule: first(S3) + last(S3) + ssn(9)
