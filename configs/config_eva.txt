@@ -8,8 +8,6 @@ results save path: gen.txt
 
 |database configure
 DSN:PTL
-DB_port:1433
-DB_name:database1
 DB_table:table1
 DB_user:user1
 DB_password:123
