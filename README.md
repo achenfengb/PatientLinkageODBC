@@ -3,7 +3,7 @@ Secure Record Linkage
 
 Requirement
 ---
-JDK8 must be installed to run this program.
+JDK7 must be installed to run this program.
 
 Run the program
 ---
