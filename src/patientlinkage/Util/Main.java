@@ -147,19 +147,6 @@ public class Main {
                         
                         prop_array.add(tmp1);
                         break;
-                    /*case "patient linkage encoding":
-                        switch(strs2[1].trim().toLowerCase()){
-                            case "ascii":
-                                ptl_encoding_method = 0;
-                                break;
-                            case "codebook1":
-                                ptl_encoding_method = 1;
-                                break;
-                            default:
-                                System.out.println("Does not support " + strs2[1].trim() + " for patient linkage algorithm coding.");
-                                throw new AssertionError();
-                        }
-                        break;*/
                         
                     case "id": 
                         if(!strs2[1].trim().equals("null")){
@@ -199,11 +186,6 @@ public class Main {
             Logger.getLogger(PatientLinkageGadget.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        /*try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
         Helper help1 = Util.readAndEncodeByHash(new DBConfig(DB_url, DB_port, DB_name, DB_table, DB_user, DB_password, id, prop_array), filter_hash_bits);;
         
         data_bin = help1.data_bin;
@@ -296,41 +278,11 @@ public class Main {
         System.out.println(help_str);
     }
     
-//    public static void simulation(){
-//        String[] args0 = {"-config", "./configs/config_gen_1K.txt"};
-//        String[] args1 = {"-config", "./configs/config_eva_1K.txt"};
-//
-//        Thread t_gen = new Thread(() -> {
-//            startLinkage(args0);
-//        });
-//        Thread t_eva = new Thread(() -> {
-//            startLinkage(args1);
-//        });
-//
-//
-//
-//        long t0 = System.currentTimeMillis();
-//        try {
-//            t_gen.start();
-//            t_eva.start();
-//            t_gen.join();
-//            t_eva.join();
-//        } catch (InterruptedException ex) {
-//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        long t1 = System.currentTimeMillis() - t0;
-//
-//        System.out.println("The total running time is " + t1 / 1e3 + " seconds!");
-//    }
 
     public static void main(String[] args){      
         long t0 = System.currentTimeMillis();
         startLinkage(args);
-//        if ("sim".equals(args[0])) {
-//            simulation();
-//        } else {
-//            startLinkage(args);
-//        }
+
         long t1 = System.currentTimeMillis() - t0;
         System.out.println("The total running time is " + t1 / 1e3 + " seconds!");
     }

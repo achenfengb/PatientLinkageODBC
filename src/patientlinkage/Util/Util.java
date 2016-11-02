@@ -272,8 +272,6 @@ public class Util {
         Helper ret = new Helper();
         ArrayList<boolean[][]> retArrList = new ArrayList<>();
         Soundex sdx = new Soundex();
-        //String connectionUrl = db_config.getG_url();
-        //Connection con = null;
         String[] all_props = db_config.getAll_props();
         int[][] prop_lens = db_config.getProps_len();
         ret.pros = all_props;
@@ -282,11 +280,9 @@ public class Util {
         try {
             int pos1;
             Class.forName("sun.jdbc.odbc.JdbcOdbcDriver");
-            //DatabaseConnection con = new DatabaseConnection(db_config.getG_url1(), "", db_config.getDB_name(), db_config.getDB_user(), db_config.getDB_password());
             final Connection con = DriverManager.getConnection(db_config.getODBC(), db_config.getDB_user(), db_config.getDB_password());
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             
-            //con = DriverManager.getConnection(connectionUrl);
             Statement stmn = con.createStatement();
             String id = db_config.getId();
             
@@ -323,7 +319,13 @@ public class Util {
                 Arrays.fill(coms_strs, "");
                 
                 for (int i = 0; i < all_props.length; i++) {
-                    String temp = rs.getString(i + pos1).replace("-", "").toLowerCase();
+                    String temp = rs.getString(i + pos1);
+                    if (temp == null) {
+                        temp = "";
+                    }
+                    temp = temp.replace("-", "").toLowerCase();
+                    
+                    //String temp = rs.getString(i + pos1).replace("-", "").toLowerCase();
                     for (int j = 0; j < coms_strs.length; j++) {
                         if (prop_lens[j][i] > (Integer.MAX_VALUE/2)) {
                             coms_strs[j] += sdx.soundex(temp).toLowerCase() + resizeString(temp, Integer.MAX_VALUE - prop_lens[j][i]);
