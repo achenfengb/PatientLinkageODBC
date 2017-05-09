@@ -87,7 +87,7 @@ public class DBConfig {
     }
 
     public String getDB_table() {
-        return DB_table;
+        return DB_name + "." + DB_table;
     }
 
     public String getDB_user() {
