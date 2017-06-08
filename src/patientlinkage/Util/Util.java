@@ -313,7 +313,7 @@ public class Util {
                 if("".equals(id)){
                     ret.IDs.add((new Integer(index1++)).toString());
                 }else{
-                    ret.IDs.add(rs.getString("id"));
+                    ret.IDs.add(rs.getString(id));
                 }
                 String[] coms_strs = new String[prop_lens.length];
                 Arrays.fill(coms_strs, "");
